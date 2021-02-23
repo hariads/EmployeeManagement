@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item active">
+        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" onclick=createDept()>Department</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" onclick=createEmp()>Employee</a>
+    </li>                       
+</ul>
+<div class="row" id="deptCreate">
+   @{ await Html.RenderPartialAsync("Shared/_DeptCreate");}
+</div>
+<div class="row" id="empCreate" style="display: none;">
+     @{ await Html.RenderPartialAsync("Shared/_EmpCreate");}
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>  
+</div>
+<script>
+    function createEmp()
+    {
+        document.getElementById("deptCreate").style.display = "none";
+        document.getElementById("empCreate").style.display = "block";
+    }
+    function createDept()
+    {
+        document.getElementById("deptCreate").style.display = "block";
+        document.getElementById("empCreate").style.display = "none";
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
